@@ -1,14 +1,10 @@
-ARG PYTHON_VERSION=3.7
-
-
 FROM docker:latest AS docker
-FROM alpine:latest AS runtime
-
-FROM python:${PYTHON_VERSION}-alpine AS build
-
+FROM python:3.8-alpine AS build
 
 ARG COMPOSE_VERSION=1.26.2
 
+COPY --from=docker /usr/local/bin/docker \
+                   /usr/local/bin/docker
 
 RUN apk add --no-cache \
         bash \
@@ -24,11 +20,8 @@ RUN apk add --no-cache \
         musl-dev \
         openssl \
         openssl-dev \
-        zlib-dev
-
-COPY --from=docker  /usr/local/bin/docker           /usr/local/bin/docker
-
-RUN git clone https://github.com/docker/compose.git \
+        zlib-dev \
+ && git clone https://github.com/docker/compose.git \
  && cd compose \
  && git checkout "${COMPOSE_VERSION}" \
  && pip install virtualenv==16.2.0 \
@@ -56,15 +49,15 @@ RUN git clone https://github.com/docker/compose.git \
  && docker-compose version
 
 
-FROM runtime
-
+FROM alpine:latest
 
 LABEL maintainer="Saswat Padhi saswat.sourav@gmail.com"
 
-
-COPY --from=docker /usr/local/bin/docker                 /usr/local/bin/docker
-COPY --from=build  /compose/docker-compose-entrypoint.sh /usr/local/bin/docker-compose-entrypoint.sh
-COPY --from=build  /usr/local/bin/docker-compose         /usr/local/bin/docker-compose
-
+COPY --from=docker /usr/local/bin/docker \
+                   /usr/local/bin/docker
+COPY --from=build /compose/docker-compose-entrypoint.sh \
+                  /usr/local/bin/docker-compose-entrypoint.sh
+COPY --from=build /usr/local/bin/docker-compose \
+                  /usr/local/bin/docker-compose
 
 ENTRYPOINT ["sh", "/usr/local/bin/docker-compose-entrypoint.sh"]

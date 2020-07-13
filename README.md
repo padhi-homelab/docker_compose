@@ -4,14 +4,18 @@
 
 A multiarch [docker-compose] Docker image, based on [Alpine Linux].
 
-### Supported Architectures
-
-- ~~`x86` (`linux/386`)~~
-- `amd64` (`linux/amd64`)
-- `arm` (`linux/arm/v6`)
-- `armhf` (`linux/arm/v7`)
-- `aarch64` (`linux/arm64`)
-- ~~`ppc64le` (`linux/ppc64le`)~~
+<table>
+  <thead>
+    <tr>
+      <th>:heavy_multiplication_x: i386</th>
+      <th>:heavy_check_mark: amd64</th>
+      <th>:heavy_check_mark: arm</th>
+      <th>:heavy_check_mark: armhf</th>
+      <th>:heavy_check_mark: aarch64</th>
+      <th>:heavy_multiplication_x: ppc64le</th>
+    <tr>
+  </thead>
+</table>
 
 ### Credits
 
