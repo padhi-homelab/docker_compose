@@ -1,7 +1,7 @@
 FROM docker:latest AS docker
-FROM python:3.8-alpine AS build
+FROM python:3.8-alpine3.12 AS build
 
-ARG COMPOSE_VERSION=1.26.2
+ARG COMPOSE_VERSION=1.27.0
 
 COPY --from=docker /usr/local/bin/docker \
                    /usr/local/bin/docker
@@ -24,8 +24,8 @@ RUN apk add --no-cache \
  && git clone https://github.com/docker/compose.git \
  && cd compose \
  && git checkout "${COMPOSE_VERSION}" \
- && pip install virtualenv==16.2.0 \
- && pip install tox==2.9.1 \
+ && pip install virtualenv==20.0.30 \
+ && pip install tox==3.19.0 \
  && PY_ARG=$(python -V | awk '{print $2}' | awk 'BEGIN{FS=OFS="."} NF--' | sed 's|\.||g' | sed 's|^|py|g') \
  && sed -i "s|envlist = .*|envlist = ${PY_ARG},pre-commit|g" tox.ini \
  && tox --notest \
@@ -49,7 +49,7 @@ RUN apk add --no-cache \
  && docker-compose version
 
 
-FROM alpine:latest
+FROM alpine:3.12
 
 LABEL maintainer="Saswat Padhi saswat.sourav@gmail.com"
 
