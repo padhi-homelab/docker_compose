@@ -1,6 +1,4 @@
 #!/bin/sh
-
-# Source: https://raw.githubusercontent.com/docker/compose/master/script/run/run.sh
 #
 # Run docker-compose in a container
 #
@@ -17,7 +15,7 @@
 
 set -e
 
-VERSION="1.27.0"
+VERSION="1.27.2"
 IMAGE="padhihomelab/compose:$VERSION"
 
 

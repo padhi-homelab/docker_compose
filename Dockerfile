@@ -1,7 +1,10 @@
 FROM docker:latest AS docker
 FROM python:3.8-alpine3.12 AS build
 
-ARG COMPOSE_VERSION=1.27.0
+ARG COMPOSE_VERSION=1.27.2
+
+ARG PYTHON_VIRTUALENV_VERSION=20.0.30
+ARG PYTHON_TOX_VERSION=3.19.0
 
 COPY --from=docker /usr/local/bin/docker \
                    /usr/local/bin/docker
@@ -24,8 +27,8 @@ RUN apk add --no-cache \
  && git clone https://github.com/docker/compose.git \
  && cd compose \
  && git checkout "${COMPOSE_VERSION}" \
- && pip install virtualenv==20.0.30 \
- && pip install tox==3.19.0 \
+ && pip install virtualenv==${PYTHON_VIRTUALENV_VERSION} \
+ && pip install tox==${PYTHON_TOX_VERSION} \
  && PY_ARG=$(python -V | awk '{print $2}' | awk 'BEGIN{FS=OFS="."} NF--' | sed 's|\.||g' | sed 's|^|py|g') \
  && sed -i "s|envlist = .*|envlist = ${PY_ARG},pre-commit|g" tox.ini \
  && tox --notest \
