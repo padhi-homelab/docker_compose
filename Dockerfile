@@ -1,10 +1,10 @@
 FROM docker:latest AS docker
 FROM python:3.8-alpine3.12 AS build
 
-ARG COMPOSE_VERSION=1.27.3
+ARG COMPOSE_VERSION=1.27.4
 
-ARG PYTHON_VIRTUALENV_VERSION=20.0.30
-ARG PYTHON_TOX_VERSION=3.19.0
+ARG PYTHON_VIRTUALENV_VERSION=20.0.31
+ARG PYTHON_TOX_VERSION=3.20.0
 
 COPY --from=docker /usr/local/bin/docker \
                    /usr/local/bin/docker
