@@ -1,10 +1,10 @@
 FROM docker:latest AS docker
-FROM python:3.8-alpine3.12 AS build
+FROM python:3.9-alpine3.13 AS build
 
-ARG COMPOSE_VERSION=1.27.4
+ARG COMPOSE_VERSION=1.28.4
 
-ARG PYTHON_VIRTUALENV_VERSION=20.0.31
-ARG PYTHON_TOX_VERSION=3.20.0
+ARG PYTHON_VIRTUALENV_VERSION=20.4.0
+ARG PYTHON_TOX_VERSION=3.21.2
 
 COPY --from=docker /usr/local/bin/docker \
                    /usr/local/bin/docker
@@ -52,7 +52,7 @@ RUN apk add --no-cache \
  && docker-compose version
 
 
-FROM alpine:3.12
+FROM alpine:3.13
 
 LABEL maintainer="Saswat Padhi saswat.sourav@gmail.com"
 
