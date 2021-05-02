@@ -4,25 +4,9 @@
 
 A multiarch [docker-compose] Docker image, based on [Alpine Linux].
 
-<table>
-  <thead>
-    <tr>
-      <th>:heavy_multiplication_x: i386</th>
-      <th>:heavy_check_mark: amd64</th>
-      <th>:heavy_check_mark: arm</th>
-      <th>:heavy_check_mark: armhf</th>
-      <th>:heavy_check_mark: aarch64</th>
-      <th>:heavy_multiplication_x: ppc64le</th>
-    <tr>
-  </thead>
-</table>
-
-### Credits
-
-#### https://github.com/linuxserver/docker-docker-compose
-  - Supports a subset of architectures
-
-
+|           386            |       amd64        |       arm/v6       |       arm/v7       |       arm64        |         ppc64le          |          s390x           |
+| :----------------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------------: | :----------------------: |
+| :heavy_multiplication_x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_multiplication_x: | :heavy_multiplication_x: |
 
 [Alpine Linux]:   https://alpinelinux.org/
 [docker-compose]: https://github.com/docker/compose/

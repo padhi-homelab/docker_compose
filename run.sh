@@ -15,7 +15,7 @@
 
 set -e
 
-VERSION="1.28.6"
+VERSION="1.29.1"
 IMAGE="padhihomelab/compose:$VERSION"
 
 
