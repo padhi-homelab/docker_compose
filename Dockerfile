@@ -1,7 +1,7 @@
 FROM docker:latest AS docker
 FROM python:3.9-alpine3.13 AS build
 
-ARG COMPOSE_VERSION=1.29.1
+ARG COMPOSE_VERSION=1.29.2
 
 ARG PYTHON_VIRTUALENV_VERSION=20.4.0
 ARG PYTHON_TOX_VERSION=3.21.2
@@ -52,7 +52,7 @@ RUN apk add --no-cache \
  && docker-compose version
 
 
-FROM alpine:3.13
+FROM alpine:3.14
 
 LABEL maintainer="Saswat Padhi saswat.sourav@gmail.com"
 
