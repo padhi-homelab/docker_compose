@@ -1,5 +1,5 @@
 FROM docker:latest AS docker
-FROM python:3.9-alpine3.13 AS build
+FROM python:3.9.6-alpine3.13 AS build
 
 ARG COMPOSE_VERSION=1.29.2
 
